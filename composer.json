@@ -1,5 +1,5 @@
 {
-  "name": "kissdigital-com/apple-sign-in-client-secret-generator",
+  "name": "ai-gate/apple-sign-in-client-secret-generator",
   "description": "PHP package for generating 'client secret' for Sign In with Apple",
   "keywords": ["php", "sign-in-with-apple", "apple", "client-secret"],
   "type": "package",
@@ -14,14 +14,19 @@
       "name": "Paweł Pyrczak",
       "email": "pawel.pyrczak@kissdigital.com",
       "role": "Contributor"
+    },
+    {
+      "name": "Vasil Derimanov",
+      "email": "vasil.derimanov@gmail.com",
+      "role": "Contributor"
     }
   ],
   "support": {
-    "email": "github@kissdigital.com"
+    "email": "vasil.derimanov@gmail.com"
   },
   "require": {
-    "php": "^7.2",
-    "web-token/jwt-framework": "^2.1"
+    "php": "^8.2",
+    "web-token/jwt-framework": "^3.2"
   },
   "minimum-stability": "dev",
   "autoload": {

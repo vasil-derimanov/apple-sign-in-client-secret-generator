@@ -2,12 +2,15 @@
 
 namespace Kissdigitalcom\AppleSignIn;
 
+use InvalidArgumentException;
 use Jose\Component\Core\AlgorithmManager;
 use Jose\Component\Core\JWK;
 use Jose\Component\KeyManagement\JWKFactory;
 use Jose\Component\Signature\Algorithm\ES256;
 use Jose\Component\Signature\JWSBuilder;
 use Jose\Component\Signature\Serializer\CompactSerializer;
+
+use function file_get_contents;
 
 /**
  * Apple Sign In Client Secret Generator
@@ -17,32 +20,27 @@ class ClientSecret
     /**
      * @var string
      */
-    private $clientId;
+    private string $clientId;
 
     /**
      * @var string
      */
-    private $teamId;
+    private string $teamId;
 
     /**
      * @var string
      */
-    private $keyId;
+    private string $keyId;
 
     /**
      * @var null|string
      */
-    private $privateKeyContent;
-
-    /**
-     * @var null|string
-     */
-    private $privateKeyPath;
+    private ?string $privateKeyPath;
 
     /**
      * @var int time to live for token
      */
-    private $ttl = 15552000;
+    private int $ttl = 15552000;
 
     /**
      * ClientSecret constructor.
@@ -50,7 +48,7 @@ class ClientSecret
      * @param string $clientId
      * @param string $teamId
      * @param string $keyId
-     * @param string|null $certPath
+     * @param string $certPath
      */
     public function __construct(string $clientId, string $teamId, string $keyId, string $certPath)
     {
@@ -99,12 +97,10 @@ class ClientSecret
      */
     private function generatePrivateECKey(): JWK
     {
-        if ($this->privateKeyContent) {
-            $content = $this->privateKeyContent;
-        } elseif ($this->privateKeyPath) {
-            $content = \file_get_contents($this->privateKeyPath);
+        if ($this->privateKeyPath) {
+            $content = file_get_contents($this->privateKeyPath);
         } else {
-            throw new \InvalidArgumentException('Unable to find private key.');
+            throw new InvalidArgumentException('Unable to find private key.');
         }
 
         return JWKFactory::createFromKey($content, null, [

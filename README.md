@@ -1,18 +1,18 @@
 # Apple Signin Client Secret Generator for php
-![KISSDIGITALCOM](https://kiss.home.pl/github/apple-sign-in-client-secret-generator-logo-kissdigital.png)
+Fork of ![KISSDIGITALCOM](https://kiss.home.pl/github/apple-sign-in-client-secret-generator-logo-kissdigital.png)
 
 ## Description
 This package provides class that generates token derived from your private key using ES256 JWT algorithm. For more info check [useful links](#useful-links) 
 
 ## Requirements
 
-PHP 7.2+
+PHP 8.2+
 
 ## Installation
 
 Install the composer package:
 
-```composer require kissdigital-com/apple-sign-in-client-secret-generator```
+```composer require ai-gate/apple-sign-in-client-secret-generator```
 
 ## Example Usage
 
